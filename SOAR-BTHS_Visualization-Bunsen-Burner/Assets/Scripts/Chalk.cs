@@ -8,6 +8,9 @@ public class Chalk : MonoBehaviour {
     private int particleCollCount;
     public int particleCollCutoff;
 
+	// BunsenBurner burner = GameObject.Find ("BunsenBurner").GetComponent <BunsenBurner>();
+	public float intake; 
+
 	// Use this for initialization
 	void Start () {
         particleCollCount = 0;
@@ -16,7 +19,8 @@ public class Chalk : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-        soot.SetActive(particleCollCount >= particleCollCutoff);
+		intake = GameObject.Find ("BunsenBurner").GetComponent <BunsenBurner>().AirIntakeRate;
+		soot.SetActive(particleCollCount >= particleCollCutoff && intake < 0.75);
 	}
 
     private void OnDisable()
